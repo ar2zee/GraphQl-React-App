@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
+import AppoloClient from 'apollo-boost';
+import {AppoloProvider} from 'react-apollo';
 
 import BookList from './components/BookList';
+
+const client = AppoloClient({
+  uri: "http://localhost:4000/graphql"
+})
 
 class App extends Component {
   render() {
     return (
-      <div id="main">
-        <h1>Test h1</h1>
-        <BookList />
-      </div>
+      <AppoloProvider client={client}>
+        <div id="main">
+          <h1>Test h1</h1>
+          <BookList />
+        </div>
+      </AppoloProvider>
     );
   }
 }
